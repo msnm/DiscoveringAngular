@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div>
+    <h1>Upcoming AIM events</h1>
+  <hr/>
+  <div class="row">
+    <div *ngFor="let event of events" class="col-md-5">
+     <app-event-thumbnail  [meetUp]="event" (click)="handleThumbnailClick(event.name)"> </app-event-thumbnail>  <!-- # is used for template variables -->
+    </div>
+  </div>
+</div>

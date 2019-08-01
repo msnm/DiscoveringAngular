@@ -4,8 +4,8 @@ import {EventI} from '../shared/event.model';
 @Component({
   selector: 'app-event-thumbnail',
   template: `<div class="well hoverwell thumbnail" [routerLink]="['/events', meetUp.id]">
-    <h2> {{meetUp.name}} </h2>
-    <div> Date: {{meetUp?.date}}</div>
+    <h2> {{meetUp.name | uppercase }} </h2>
+    <div> Date: {{meetUp?.date | date:'shortDate'}}</div>
     <div [ngClass]="{green: getStartTimeClass, bold: getStartTimeClass}" [ngSwitch]="meetUp?.time"> Time: {{meetUp?.time}}
       <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
       <span *ngSwitchCase="'10:00 am'">(Late Start)</span>

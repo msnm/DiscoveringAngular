@@ -13,13 +13,11 @@ export class NavbarComponent implements OnInit {
   searchTerm = '';
   foundSessions: SessionI[];
 
-  constructor(private authService: AuthService, private eventService: EventService) { }
+  constructor(public authService: AuthService, private eventService: EventService) { }
 
   searchSessions(searchTerm) {
     this.eventService.searchSessions(searchTerm).subscribe(sessions => {
       this.foundSessions = sessions;
-      console.log(sessions);
-
     });
   }
   ngOnInit() {

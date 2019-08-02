@@ -7,6 +7,7 @@ import {EventThumbnailComponent} from './events/event-thumbnail.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {EventService} from './shared/event.service';
 import {TOASTR_TOKEN, ToastrI} from './shared/toastr.service';
+import { JQ_TOKEN} from './shared/jQuery.service';
 import {EventDetailsComponent} from './events/event-details/event-details.component';
 import {RouterModule} from '@angular/router';
 import {appRoutes} from '../route';
@@ -21,8 +22,13 @@ import { CreateSessionComponent } from './events/create-session/create-session.c
 import {SessionListComponent} from './events/event-details/session-list.component';
 import {CollapsibleWellComponent} from './shared/collapsible-well.component';
 import {DurationPipe} from './shared/duration.pipe';
+import {SimpleModalComponent} from './shared/simple-modal.component';
+import {ModalTriggerDirective} from './shared/model-trigger.directive';
+import {UpvoteComponent} from './events/event-details/upvote.component';
+import {VoterService} from './events/event-details/voter.service';
 
-declare let toastr: ToastrI;
+const toastr: ToastrI = window['toastr'];
+const jQuery = window['jQuery'];
 
 @NgModule({
   declarations: [
@@ -36,16 +42,19 @@ declare let toastr: ToastrI;
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective,
+    UpvoteComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    UserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    UserModule
   ],
-  providers: [EventService, { provide: TOASTR_TOKEN, useValue: toastr }, EventRouteActivatorService, EventsListResolverService, AuthService,
+  providers: [EventService, VoterService, { provide: TOASTR_TOKEN, useValue: toastr }, { provide: JQ_TOKEN, useValue: jQuery }, EventRouteActivatorService, EventsListResolverService, AuthService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState}],
   bootstrap: [AppComponent]
 })

@@ -21,8 +21,6 @@ import {EventI} from '../shared/event.model';
     </div>
   </div>`,
   styles: [`
-    .green { color: #003300 !important;}
-    .bold { font-weight: bold;}
     .thumbnail { min-height: 210px;}
     .pad-left { margin-left: 10px; }
     .well div { color: #bbb;}`

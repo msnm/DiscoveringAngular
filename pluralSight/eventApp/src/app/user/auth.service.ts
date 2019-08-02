@@ -6,10 +6,10 @@ export class AuthService {
 
   currentUser: UserI;
 
-  loginUser(userName: string, password: string) {
+  loginUser(username: string, password: string) {
     this.currentUser = {
       id: 1,
-      userName: userName,
+      userName: username,
       firstName: 'Michael',
       lastName: 'Schoenmaekers',
     };

@@ -1,1 +1,23 @@
-<p>room works!</p>
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <div  *ngFor="let patient of patients">
+        <li class="nav-item">
+          <a class="nav-link" (click)=changeActivePatient(patient) [ngClass]="{'active': patient === patientActive}">{{patient.id}}</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+  <div class="card-body">
+    <app-patient-thumbnail [patient]="patientActive"></app-patient-thumbnail>
+  </div>
+  <div class="card-footer text-muted">
+    <ul class="list-group list-group-horizontal-md">
+      <li class="list-inline-item">{{room.roomNumber}}</li>
+      <li *ngIf="room.baby==true" class="list-inline-item"><i class="fa fa-child"></i></li>
+      <li *ngIf="room.saloon==true" class="list-inline-item"><i class="fa fa-coffee"></i></li>
+      <li *ngIf="room.shower==true" class="list-inline-item"><i class="fa fa-shower"></i></li>
+      <li *ngIf="room.bath==true" class="list-inline-item"><i class="fa fa-bath"></i></li>
+    </ul>
+  </div>
+</div>

@@ -8,6 +8,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DepartmentComponent } from './departments/department/department.component';
 import { DepartmentThumbnailComponent } from './departments/department-list/department-thumbnail/department-thumbnail.component';
 import { RoomComponent } from './departments/department/room/room.component';
+import { PatientComponent } from './patients/patient/patient.component';
+import { PatientThumbnailComponent } from './patients/patient/patient-thumbnail/patient-thumbnail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { RoomComponent } from './departments/department/room/room.component';
     NavBarComponent,
     DepartmentComponent,
     DepartmentThumbnailComponent,
-    RoomComponent
+    RoomComponent,
+    PatientComponent,
+    PatientThumbnailComponent,
   ],
   imports: [
     BrowserModule,

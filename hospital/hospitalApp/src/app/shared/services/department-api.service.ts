@@ -17,7 +17,7 @@ export class DepartmentApiService {
       bath: false,
       saloon: false,
       baby: false,
-      beds: [ { id: 1 }, { id: 2 } ]
+      beds: [ { id: 1, patientId: 10001}, { id: 2, patientId: 10002 } ]
    },
     {
       roomNumber: 2,
@@ -28,7 +28,7 @@ export class DepartmentApiService {
       bath: true,
       saloon: true,
       baby: false,
-      beds: [ { id: 3 }, { id: 4 } ]
+      beds: [ { id: 3, patientId: 10002 }, { id: 4, patientId: 10003 } ]
     },
     {
       roomNumber: 3,
@@ -39,7 +39,7 @@ export class DepartmentApiService {
       bath: true,
       saloon: true,
       baby: true,
-      beds: [ { id: 5 } ]
+      beds: [ { id: 5, patientId: 10004 } ]
     },
     {
       roomNumber: 4,
@@ -50,7 +50,7 @@ export class DepartmentApiService {
       bath: false,
       saloon: false,
       baby: false,
-      beds: [ { id: 6 }, { id: 7 } ]
+      beds: [ { id: 6, patientId: 10005 }, { id: 7, patientId: 10006 } ]
     },
     {
       roomNumber: 5,
@@ -61,7 +61,7 @@ export class DepartmentApiService {
       bath: true,
       saloon: true,
       baby: false,
-      beds: [ { id: 8 }, { id: 9 } ]
+      beds: [ { id: 8, patientId: 10007 }, { id: 9, patientId: 10008 } ]
     },
     {
       roomNumber: 6,
@@ -72,7 +72,7 @@ export class DepartmentApiService {
       bath: true,
       saloon: true,
       baby: true,
-      beds: [ { id: 10 } ]
+      beds: [ { id: 10, patientId: 10009 } ]
     }, {
       roomNumber: 7,
       width: 3.5,
@@ -82,7 +82,7 @@ export class DepartmentApiService {
       bath: false,
       saloon: false,
       baby: false,
-      beds: [ { id: 11 }, { id: 12 } ]
+      beds: [ { id: 11, patientId: 10010 }, { id: 12, patientId: 10011 } ]
     },
     {
       roomNumber: 8,
@@ -93,7 +93,7 @@ export class DepartmentApiService {
       bath: true,
       saloon: true,
       baby: false,
-      beds: [ { id: 13 }, { id: 14 } ]
+      beds: [ { id: 13, patientId: 10012 }, { id: 14, patientId: 10013 } ]
     },
     {
       roomNumber: 9,
@@ -104,7 +104,7 @@ export class DepartmentApiService {
       bath: true,
       saloon: true,
       baby: true,
-      beds: [ { id: 15 } ]
+      beds: [ { id: 15, patientId: 10014 } ]
     }, {
       roomNumber: 10,
       width: 3.5,
@@ -114,7 +114,7 @@ export class DepartmentApiService {
       bath: false,
       saloon: false,
       baby: false,
-      beds: [ { id: 16 }, { id: 17 } ]
+      beds: [ { id: 16, patientId: 10015 }, { id: 17, patientId: 10016 } ]
     },
     {
       roomNumber: 11,
@@ -125,7 +125,7 @@ export class DepartmentApiService {
       bath: true,
       saloon: true,
       baby: false,
-      beds: [ { id: 18 }, { id: 19 } ]
+      beds: [ { id: 18, patientId: 10017 }, { id: 19, patientId: 10018 } ]
     },
     {
       roomNumber: 12,
@@ -136,7 +136,7 @@ export class DepartmentApiService {
       bath: true,
       saloon: true,
       baby: true,
-      beds: [ { id: 20 } ]
+      beds: [ { id: 20, patientId: 10019 }, { id: 21, patientId: 10020 }, { id: 22, patientId: 10021 } ]
     },
   ];
 

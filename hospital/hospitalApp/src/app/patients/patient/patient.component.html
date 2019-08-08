@@ -1,2 +1,131 @@
-<p>patient works! {{ patient.firstName }}</p>
+<div class="container flex-wrap">
+  <div class="row">
+    <div class="col">
+      <h2> Medische fiche patient {{patient.id}}</h2>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="container col-md-6">
+
+      <div class="row justify-content-between">
+        <div class="col-md-8">
+          <h3>Persoonlijke gegevens</h3>
+        </div>
+        <div class="col-md-2">
+          <button class="btn"><i class="fa fa-sliders"></i></button>
+        </div>
+
+      </div>
+      <form>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Patientnummer</span>
+              </div>
+              <input disabled type="text" aria-label="BirthDate" [defaultValue]="patient.id"
+                     class="form-control bg-white">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Voor en achternaam</span>
+              </div>
+              <input disabled type="text" aria-label="First name" [defaultValue]="patient.firstName"
+                     class="form-control bg-white">
+              <input disabled type="text" aria-label="Last name" [defaultValue]="patient.lastName"
+                     class="form-control bg-white">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Geboortedatum</span>
+              </div>
+              <input disabled type="date" aria-label="BirthDate" [defaultValue]="patient.birthDate"
+                     class="form-control bg-white">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="container col-md-6">
+
+      <div class="row justify-content-between">
+        <div class="col-md-8">
+          <h3>Medische gegevens</h3>
+        </div>
+        <div class="col-md-2">
+          <button class="btn"><i class="fa fa-sliders"></i></button>
+        </div>
+
+      </div>
+      <form>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Patientnummer</span>
+              </div>
+              <input disabled type="text" aria-label="BirthDate" [defaultValue]="patient.id"
+                     class="form-control bg-white">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Afdeling</span>
+              </div>
+              <select disabled aria-label="Department" class="form-control bg-white">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Room</span>
+              </div>
+              <select disabled aria-label="Room" class="form-control bg-white">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Opnamedatum</span>
+              </div>
+              <input disabled type="date" aria-label="BirthDate" [defaultValue]="patient.birthDate"
+                     class="form-control bg-white">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

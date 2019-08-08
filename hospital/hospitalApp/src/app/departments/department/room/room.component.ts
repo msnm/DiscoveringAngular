@@ -15,8 +15,6 @@ export class RoomComponent implements OnInit {
   patientActive: Patient;
   roomStatus: string;
 
-  private activePatient: Patient;
-
   constructor(private patientApi: PatientApiService) { }
 
   ngOnInit() {

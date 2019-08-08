@@ -18,7 +18,7 @@ export class PatientApiService {
       id: 20001,
       type: TreatmentType.FEEDING,
       dateOfTreatment: new Date(),
-      description: 'Feeding biefstuk friet.'
+      description: 'Helpen met eten geven'
     },
     {
       id: 20002,
@@ -30,7 +30,7 @@ export class PatientApiService {
       id: 20003,
       type: TreatmentType.WOUND_CARE,
       dateOfTreatment: new Date(),
-      description: 'Refreshing bandages'
+      description: 'Verbanden verversen'
     }
   ];
   private patients: Patient[] = [

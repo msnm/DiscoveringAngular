@@ -193,6 +193,10 @@ export class DepartmentApiService {
     return this.departments;
   }
 
+  getDepartment(id: number): Department {
+    return this.departments.find(dep => dep.id === id);
+  }
+
   getRooms(departmentId: number): Room[] {
     return this.departments[departmentId - 1].rooms;
   }

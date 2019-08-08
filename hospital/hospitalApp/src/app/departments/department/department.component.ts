@@ -13,11 +13,14 @@ export class DepartmentComponent implements OnInit {
 
   rooms: Room[];
 
+  department: Department;
+
   constructor(private departmentService: DepartmentApiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.rooms = this.departmentService.getRooms(+params.get('departmentId'));
+      this.department = this.departmentService.getDepartment(+params.get('departmentId'));
     });
   }
 }

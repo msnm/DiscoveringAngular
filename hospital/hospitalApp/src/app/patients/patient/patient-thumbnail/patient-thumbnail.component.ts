@@ -9,10 +9,14 @@ import {Patient} from '../../../shared/model/patient.model';
 export class PatientThumbnailComponent implements OnInit {
 
   @Input() patient: Patient;
+  isCollapsedPatient;
+  isCollapsedTreatment;
 
   constructor() { }
 
   ngOnInit() {
+    this.isCollapsedPatient = false;
+    this.isCollapsedTreatment = false;
   }
 
 }

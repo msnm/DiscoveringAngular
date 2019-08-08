@@ -10,6 +10,7 @@ import { DepartmentThumbnailComponent } from './departments/department-list/depa
 import { RoomComponent } from './departments/department/room/room.component';
 import { PatientComponent } from './patients/patient/patient.component';
 import { PatientThumbnailComponent } from './patients/patient/patient-thumbnail/patient-thumbnail.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PatientThumbnailComponent } from './patients/patient/patient-thumbnail/
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

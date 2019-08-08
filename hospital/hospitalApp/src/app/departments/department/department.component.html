@@ -1,7 +1,6 @@
-<div class="container">
-  <div class="row">
+<h3> {{department.name}}</h3>
+<div class="card-deck">
     <div *ngFor="let room of rooms" class="col-md-4">
       <app-room [room]="room"></app-room>
     </div>
   </div>
-</div>

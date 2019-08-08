@@ -201,5 +201,14 @@ export class DepartmentApiService {
     return this.departments[departmentId - 1].rooms;
   }
 
+  findRoomOfPatient(patientId: number): Room {
+    return this.rooms.find(room => room.beds.find(bed => bed.patientId === patientId) !== undefined);
+  }
+
+  findDepartmentOfPatient(patientId: number): Department {
+    // tslint:disable-next-line:max-line-length
+    return this.departments.find(dep => dep.rooms.find(room => room.beds.find(bed => bed.patientId === patientId) !== undefined) !== undefined);
+  }
+
 
 }

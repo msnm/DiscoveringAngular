@@ -7,6 +7,83 @@
 
   <div class="row">
     <div class="container col-md-6">
+      <!-- Header -->
+      <div class="row justify-content-between">
+        <div class="col-md-8">
+          <h3>Medische gegevens</h3>
+        </div>
+        <div class="col-md-2">
+          <button class="btn"><i class="fa fa-sliders"></i></button>
+        </div>
+      </div>
+      <!-- Form -->
+      <form>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Patiëntnummer</span>
+              </div>
+              <input disabled type="text" aria-label="PatientId" [defaultValue]="patient.id" class="form-control bg-white">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Afdeling</span>
+              </div>
+              <select  aria-label="Department" class="form-control bg-white">
+                <option disabled *ngFor="let dep of departments" [defaultSelected]="patient.department.id===dep.id" [value]="dep.name">{{dep.name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Room</span>
+              </div>
+              <select aria-label="Room" class="form-control bg-white">
+                <option disabled *ngFor="let room of rooms" [defaultSelected]="patient.room.roomNumber===room.roomNumber" [value]="room.roomNumber">{{room.roomNumber}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Opnamedatum</span>
+              </div>
+              <input disabled type="date" aria-label="BirthDate" [defaultValue]="patient.hospitalizationInfo.admission"  class="form-control bg-white">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Reden opname</span>
+              </div>
+              <textarea disabled  aria-label="Reason hospitalization" class="form-control bg-white">{{patient.hospitalizationInfo.reason}}</textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Geplande ontslagdatum</span>
+              </div>
+              <input disabled type="date" aria-label="Resignation date" [defaultValue]="patient.hospitalizationInfo.plannedResignation"  class="form-control bg-white">
+            </div>
+          </div>
+        </div>
+    </form>
+  </div>
+    <!-- PERSOONLIJKE GEGEVENS -->
+    <div class="container col-md-6">
 
       <div class="row justify-content-between">
         <div class="col-md-8">
@@ -22,18 +99,6 @@
           <div class="col">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text">Patientnummer</span>
-              </div>
-              <input disabled type="text" aria-label="BirthDate" [defaultValue]="patient.id"
-                     class="form-control bg-white">
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend">
                 <span class="input-group-text">Voor en achternaam</span>
               </div>
               <input disabled type="text" aria-label="First name" [defaultValue]="patient.firstName"
@@ -43,7 +108,6 @@
             </div>
           </div>
         </div>
-
 
         <div class="row">
           <div class="col">
@@ -56,76 +120,87 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Geslacht</span>
+              </div>
+              <input disabled type="text" aria-label="Sex" [defaultValue]="patient.sex" class="form-control bg-white">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Vegetarisch</span>
+              </div>
+              <input disabled type="text" aria-label="Vegetarian" [defaultValue]="patient.food" class="form-control bg-white">
+            </div>
+          </div>
+        </div>
       </form>
     </div>
-
-    <div class="container col-md-6">
+    <!-- Behandelingen -->
+    <div class="container col">
 
       <div class="row justify-content-between">
-        <div class="col-md-8">
-          <h3>Medische gegevens</h3>
+        <div class="col-md-10">
+          <h3>Behandelingen</h3>
         </div>
         <div class="col-md-2">
-          <button class="btn"><i class="fa fa-sliders"></i></button>
+          <button class="btn"><i class="fa fa-plus-square"></i></button>
         </div>
 
       </div>
       <form>
-        <div class="row">
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Patientnummer</span>
+        <div *ngFor="let treatment of patient.treatments">
+          <div class="row">
+            <div class="col">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Type</span>
+                </div>
+                <input disabled type="text" aria-label="Type of treatment" [defaultValue]="treatment.type"
+                       class="form-control bg-white">
               </div>
-              <input disabled type="text" aria-label="BirthDate" [defaultValue]="patient.id"
-                     class="form-control bg-white">
             </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Afdeling</span>
+          <div class="row">
+            <div class="col">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Tijdstip</span>
+                </div>
+                <input disabled type="date" aria-label="DataOfTreatment" [defaultValue]="treatment.dateOfTreatment"
+                       class="form-control bg-white">
               </div>
-              <select disabled aria-label="Department" class="form-control bg-white">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
             </div>
           </div>
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Room</span>
+          <div class="row">
+            <div class="col">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Beschrijving</span>
+                </div>
+                <textarea disabled aria-label="Sex" class="form-control bg-white">{{treatment.description}}</textarea>
               </div>
-              <select disabled aria-label="Room" class="form-control bg-white">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
             </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Opnamedatum</span>
+          <div class="row">
+            <div class="col">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Voeding</span>
+                </div>
+                <input disabled type="text" aria-label="Vegetarian" [defaultValue]="patient.food" class="form-control bg-white">
               </div>
-              <input disabled type="date" aria-label="BirthDate" [defaultValue]="patient.birthDate"
-                     class="form-control bg-white">
             </div>
           </div>
         </div>
       </form>
     </div>
+
   </div>
 </div>

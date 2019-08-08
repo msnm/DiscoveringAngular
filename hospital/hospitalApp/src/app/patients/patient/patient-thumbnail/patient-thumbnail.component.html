@@ -1,54 +1,57 @@
-
-
-<ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <div class="container">
-          <div class="row">
-            <button type="button" class="btn col" (click)="isCollapsedPatient = !isCollapsedPatient" [attr.aria-expanded]="!isCollapsedPatient" aria-controls="collapsePatientInfo">
-              <div class="row">
-                <div class="col-md-2">
-                  <i class="fa fa-info-circle"></i>
-                </div>
-                <div class="col-md-10 text-left">
-                  {{patient.firstName}} {{patient.lastName}}
-                </div>
+<div *ngIf="patient">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="container flex-wrap">
+        <div class="row">
+          <button type="button" class="btn col" (click)="isCollapsedPatient = !isCollapsedPatient"
+                  [attr.aria-expanded]="!isCollapsedPatient" aria-controls="collapsePatientInfo">
+            <div class="row">
+              <div class="col-md-2">
+                <i class="fa fa-info-circle"></i>
               </div>
-            </button>
+              <div class="col-md-10 text-left">
+                {{patient.firstName}} {{patient.lastName}}
+              </div>
+            </div>
+          </button>
+        </div>
+        <div id="collapsePatientInfo" class="row justify-content-end" [ngbCollapse]="!isCollapsedPatient">
+          <div class="col-md-5">
+            <i *ngIf="patient.sex==='M'" class="fa fa-mars"></i>
+            <i *ngIf="patient.sex==='F'" class="fa fa-venus"></i>
           </div>
-          <div id="collapsePatientInfo" class="row justify-content-end" [ngbCollapse]="!isCollapsedPatient">
-            <div class="col-md-5">
-              <i *ngIf="patient.sex==='M'" class="fa fa-mars"></i>
-              <i *ngIf="patient.sex==='F'" class="fa fa-venus"></i>
-            </div>
-            <div class="col-md-5">
-              {{patient.birthDate | date : 'LL-MM-yyyy'}}
-            </div>
+          <div class="col-md-5">
+            {{patient.birthDate | date : 'LL-MM-yyyy'}}
           </div>
         </div>
-      </li>
-     <li class="list-group-item">
-       <div class="container-fluid">
-         <div class="row">
-           <button type="button" class="btn col" (click)="isCollapsedTreatment = !isCollapsedTreatment" [attr.aria-expanded]="!isCollapsedTreatment" aria-controls="collapseTreatmentInfo">
-             <div class="row">
-               <div class="col-md-2">
-                 <i class="fa fa-info-circle"></i>
-               </div>
-               <div class="col-md-10 text-left">
-                 Volgende behandeling
-               </div>
-             </div>
-           </button>
-         </div>
-         <div id="collapseTreatmentInfo" class="row justify-content-end" [ngbCollapse]="!isCollapsedTreatment">
-           <div class="col-md-5">
-             wassen
-           </div>
-           <div class="col-md-5">
-             2uur
-           </div>
-         </div>
-       </div>
-     </li>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="container">
+        <div class="row">
+          <button type="button" class="btn col" (click)="isCollapsedTreatment = !isCollapsedTreatment"
+                  [attr.aria-expanded]="!isCollapsedTreatment" aria-controls="collapseTreatmentInfo">
+            <div class="row">
+              <div class="col-md-2">
+                <i class="fa fa-info-circle"></i>
+              </div>
+              <div class="col-md-10 text-left">
+                Volgende behandeling
+              </div>
+            </div>
+          </button>
+        </div>
+        <div id="collapseTreatmentInfo" class="row justify-content-end" [ngbCollapse]="!isCollapsedTreatment">
+          <div class="col-md-5">
+            wassen
+          </div>
+          <div class="col-md-5">
+            2uur
+          </div>
+        </div>
+      </div>
+    </li>
   </ul>
-
+  <button class="btn btn-info">Open <i class="fa fa-table"></i>
+  </button>
+</div>

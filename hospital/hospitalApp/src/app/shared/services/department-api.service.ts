@@ -39,7 +39,7 @@ export class DepartmentApiService {
       bath: true,
       saloon: true,
       baby: true,
-      beds: [ { id: 5, patientId: 10004 } ]
+      beds: []
     },
     {
       roomNumber: 4,

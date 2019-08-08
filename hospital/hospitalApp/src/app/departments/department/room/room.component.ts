@@ -13,6 +13,7 @@ export class RoomComponent implements OnInit {
   @Input() room: Room;
   patients: Patient[];
   patientActive: Patient;
+  roomStatus: string;
 
   private activePatient: Patient;
 
@@ -21,6 +22,7 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
     this.patients = this.room.beds.map(bed => this.patientApi.getPatient(bed.patientId));
     this.setPatientActive(this.patients[0]);
+    this.checkStatusOfRoom();
   }
 
   setPatientActive(patient: Patient) {
@@ -29,6 +31,14 @@ export class RoomComponent implements OnInit {
 
   changeActivePatient(patient) {
     this.setPatientActive(patient);
+  }
+
+  checkStatusOfRoom() {
+    if (this.patients && this.patients.length !== 0) {
+      this.roomStatus = 'ok';
+    } else {
+      this.roomStatus = 'empty';
+    }
   }
 
 }

@@ -1,12 +1,19 @@
-<div class="card">
+<div class="card mb-2">
   <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
-      <div  *ngFor="let patient of patients">
-        <li class="nav-item">
-          <a class="nav-link" (click)=changeActivePatient(patient) [ngClass]="{'active': patient === patientActive}">{{patient.id}}</a>
-        </li>
+    <div class="container align-items-center">
+      <div class="row ">
+        <div class="col-md-3"><span class="badge text-right" [ngClass]="{'badge-success' : this.roomStatus === 'ok', 'badge-info': this.roomStatus ==='empty'}" >{{this.roomStatus}}</span></div>
+        <div class="col-md-9">
+          <ul class="nav nav-tabs card-header-tabs">
+            <div  *ngFor="let patient of patients">
+              <li class="nav-item">
+                <a class="nav-link" (click)=changeActivePatient(patient) [ngClass]="{'active': patient === patientActive}">{{patient.id}}</a>
+              </li>
+            </div>
+          </ul>
+        </div>
       </div>
-    </ul>
+    </div>
   </div>
   <div class="card-body">
     <app-patient-thumbnail [patient]="patientActive"></app-patient-thumbnail>

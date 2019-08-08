@@ -18,5 +18,4 @@ export class PatientThumbnailComponent implements OnInit {
     this.isCollapsedPatient = false;
     this.isCollapsedTreatment = false;
   }
-
 }

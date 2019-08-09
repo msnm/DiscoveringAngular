@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row justify-content-start">
+      <div class="col-md-3">{{treatment.type}}</div>
+      <div class="col-md-3">{{treatment.dateOfTreatment | date: 'short'}} </div>
+      <div class="col-md-5">{{treatment.description}}</div>
+      <div class="col-md-1">
+        <button (click)="treatmentForm.enable()" class="btn"><i class="fa fa-sliders"></i></button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="treatmentForm.enabled" class="card-body">
+    <form novalidate (ngSubmit)="save()" [formGroup]="treatmentForm">
+      <div class="form-group row  mb-0">
+        <label class="col-md-2 col-form-label input-group-text" for="treatmentTypeId">Behandeling</label>
+        <div class="col-md-8 p-0">
+          <select class="form-control bg-white" id="treatmentTypeId" formControlName="type"
+                  [ngClass]="{'is-invalid': !treatmentForm.get('type').valid && treatmentForm.get('type').touched}">
+            <option *ngIf="treatment.type" [defaultSelected]="treatment.type">{{treatment.type}}</option>
+            <option *ngFor="let treatmentType of treatmentTypes">{{treatmentType}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row mb-0">
+        <label class="col-md-2 col-form-label input-group-text" for="dateOfTreatment">Tijdstip</label>
+        <div class="col-md-4 p-0">
+          <input class="form-control bg-white"
+                 id="dateOfTreatment"
+                 type="date"
+                 placeholder="Date"
+                 formControlName="dateOfTreatment"
+                 [ngClass]="{'is-invalid': !treatmentForm.get('dateOfTreatment').valid && treatmentForm.get('dateOfTreatment').touched}">
+        </div>
+        <div class="col-md-4 p-0">
+          <input class="form-control bg-white"
+                 id="timeOfTreatment"
+                 type="time"
+                 placeholder="Tijdstip"
+                 formControlName="dateOfTreatment"
+                 [ngClass]="{'is-invalid': !treatmentForm.get('dateOfTreatment').valid && treatmentForm.get('dateOfTreatment').touched}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-2 col-form-label input-group-text" for="description">Beschrijving</label>
+        <div class="col-md-8 p-0">
+          <textarea class="form-control bg-white"
+                    id="description"
+                    type="text"
+                    placeholder="Rating (1-5)"
+                    formControlName="description"
+                    [ngClass]="{'is-invalid': !treatmentForm.get('description').valid && treatmentForm.get('description').touched}">
+          </textarea>
+        </div>
+      </div>
+      <div *ngIf="treatmentForm.enabled" class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  style="width:80px;"
+                  type="submit"
+                  [title]="treatmentForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!treatmentForm.valid">
+            Save
+          </button>
+          <button class="btn btn-outline-secondary mr-3"
+                  style="width:80px;"
+                  type="button"
+                  title="Cancel your edits"
+                  (click)="treatmentForm.disable()">
+            Cancel
+          </button>
+          <button class="btn btn-outline-warning"
+                  style="width:80px"
+                  type="button"
+                  title="Delete this product"
+                  (click)="deleteTreatment()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

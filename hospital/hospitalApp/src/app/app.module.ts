@@ -12,6 +12,7 @@ import { PatientComponent } from './patients/patient/patient.component';
 import { PatientThumbnailComponent } from './patients/patient/patient-thumbnail/patient-thumbnail.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TreatmentComponent } from './patients/patient/treatment/treatment.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TreatmentComponent } from './patients/patient/treatment/treatment.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

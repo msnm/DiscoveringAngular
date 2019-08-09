@@ -23,7 +23,7 @@
         </div>
         <!-- Form -->
         <div class="card-body p-0">
-          <form>
+          <form [formGroup]="">
             <div class="row">
               <div class="col">
                 <div class="input-group">
@@ -112,7 +112,7 @@
           </div>
         </div>
         <div class="card-body p-0">
-          <form>
+          <form [formGroup]="">
             <div class="row">
               <div class="col">
                 <div class="input-group">
@@ -166,25 +166,26 @@
     </div>
   </div>
   <!-- Main third row -->
+
+
+  <!-- Main fourth row -->
   <div class="row">
-    <div class="container col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <div class="row justify-content-between">
-            <div class="col-md-10">
-              <h6 class="card-title">Behandelingen</h6>
-            </div>
-            <div class="col-md-2">
-              <button class="btn"><i class="fa fa-plus-square"></i></button>
-            </div>
-          </div>
-        </div>
-        <div class="card-body p-0">
-          <div *ngFor="let treatment of patient.treatments">
-            <app-treatment [treatment]="treatment"></app-treatment>
-          </div>
-        </div>
+    <div class="container">
+      <div class="row pt-5">
+        <h6>Behandelingen</h6>
       </div>
-    </div>
+      <div class="row justify-content-start">
+        <div class="col-md-3">Type behandeling</div>
+        <div class="col-md-3">Uit te voeren op</div>
+        <div class="col-md-3">Beschrijving</div>
+        <button class="btn col-md-3 p-0">Toevoegen behandeling <i class="fa fa-plus-square"></i></button>
+      </div>
+       <div class="row">
+          <ul class="list-group col">
+            <li *ngFor="let treatment of patient.treatments" class="list-group-item justify-content-between align-items-center p-0">
+              <app-treatment [treatment]="treatment"></app-treatment>
+            </li>
+          </ul>
+        </div>
   </div>
 </div>

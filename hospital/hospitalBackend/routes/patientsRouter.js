@@ -12,6 +12,8 @@ router.use(bodyParser.json());
 router.get("/", getPatients);
 router.get("/:patientId", getPatient);
 router.patch("/:patientId", updatePatient);
+router.post("/:patientId", addTreatment);
+
 
 
 function getPatients(req, resp) {
@@ -44,6 +46,10 @@ function updatePatient(req, resp) {
     else {
         resp.status(404);
     }
+}
+
+function addTreatment(req, resp) {
+    updatePatient(req, resp);
 }
 
 function readPatientsFromDB() {

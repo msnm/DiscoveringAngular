@@ -8,9 +8,11 @@ const path = require('path');
 
 const patientsPath = "../data/patients.json";
 
-router.get("/", getPatients);
-router.use("/:patientId", getPatient);
 router.use(bodyParser.json());
+router.get("/", getPatients);
+router.get("/:patientId", getPatient);
+router.patch("/:patientId", updatePatient);
+
 
 function getPatients(req, resp) {
     resp.json(readPatientsFromDB()).status(200);
@@ -28,9 +30,31 @@ function getPatient(req, resp) {
     }
 }
 
+function updatePatient(req, resp) {
+    let patients = readPatientsFromDB();
+    let patient = patients.find(patient => patient.id === +req.params.patientId);
+    const index = patients.indexOf(patient);
+    console.log(patient.treatments);
+    patient = req.body;
+    patients[index] = patient;
+    writePatientTODB(patients);
+    if(patient) {
+        resp.json(patient).status(200);
+    }
+    else {
+        resp.status(404);
+    }
+}
+
 function readPatientsFromDB() {
     const json = fs.readFileSync(path.resolve(__dirname, patientsPath));
     return JSON.parse(json);
 }
+
+
+function writePatientTODB(patients) {
+    fs.writeFileSync(path.resolve(__dirname, patientsPath), JSON.stringify(patients));
+}
+
 
 module.exports = router;

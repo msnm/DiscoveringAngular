@@ -53,7 +53,7 @@
                     <span class="input-group-text">Room</span>
                   </div>
                   <select aria-label="Room" class="form-control bg-white">
-                    <option disabled *ngFor="let room of rooms"
+                    <option disabled *ngFor="let room of patient.department.rooms"
                             [defaultSelected]="patient.room.roomNumber===room.roomNumber"
                             [value]="room.roomNumber">{{room.roomNumber}}</option>
                   </select>
@@ -66,8 +66,8 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">Opnamedatum</span>
                   </div>
-                  <input disabled type="date" aria-label="BirthDate"
-                         [defaultValue]="patient.hospitalizationInfo.admission" class="form-control bg-white">
+                  <input disabled type="date" aria-label="Admission"
+                         [defaultValue]="patient.hospitalizationInfo.admission | date: 'yyyy-MM-dd'" class="form-control bg-white">
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@
                     <span class="input-group-text">Geplande ontslagdatum</span>
                   </div>
                   <input disabled type="date" aria-label="Resignation date"
-                         [defaultValue]="patient.hospitalizationInfo.plannedResignation" class="form-control bg-white">
+                         [defaultValue]="patient.hospitalizationInfo.plannedResignation | date: 'yyyy-MM-dd'" class="form-control bg-white">
                 </div>
               </div>
             </div>
@@ -133,7 +133,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">Geboortedatum</span>
                   </div>
-                  <input disabled type="date" aria-label="BirthDate" [defaultValue]="patient.birthDate"
+                  <input disabled type="date" aria-label="BirthDate" [defaultValue]="patient.birthDate | date: 'yyyy-MM-dd'"
                          class="form-control bg-white">
                 </div>
               </div>
@@ -175,17 +175,22 @@
         <h6>Behandelingen</h6>
       </div>
       <div class="row justify-content-start">
-        <div class="col-md-3">Type behandeling</div>
+        <div class="col-md-1">Status</div>
+
+        <div class="col-md-2">Type behandeling</div>
         <div class="col-md-3">Uit te voeren op</div>
         <div class="col-md-3">Beschrijving</div>
-        <button class="btn col-md-3 p-0">Toevoegen behandeling <i class="fa fa-plus-square"></i></button>
+        <button (click)="toggleAddPatient()" class="btn col-md-3 p-0">Toevoegen behandeling <i class="fa fa-plus-square"></i></button>
       </div>
-       <div class="row">
-          <ul class="list-group col">
-            <li *ngFor="let treatment of patient.treatments" class="list-group-item justify-content-between align-items-center p-0">
-              <app-treatment [treatment]="treatment"></app-treatment>
-            </li>
-          </ul>
-        </div>
+      <div class="row">
+        <ul class="list-group col">
+          <app-treatment *ngIf="this.addPatient" [newTreatment]="true" (treatmentChanged)="treatmentChanged($event)"></app-treatment>
+          <li *ngFor="let treatment of patient.treatments"
+              class="list-group-item justify-content-between align-items-center p-0">
+            <app-treatment (treatmentChanged)="treatmentChanged($event)" [treatment]="treatment"></app-treatment>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

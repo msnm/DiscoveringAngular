@@ -14,7 +14,14 @@ export class DepartmentListComponent implements OnInit {
   constructor(private departmentAPI: DepartmentApiService) { }
 
   ngOnInit() {
-    this.departments = this.departmentAPI.getDepartments();
+    this.getDepartments();
+  }
+
+  getDepartments(): void {
+    this.departmentAPI.getDepartments().subscribe(
+      (departments: Department[]) => this.departments = departments,
+      (error => console.log(error))
+    );
   }
 
 }

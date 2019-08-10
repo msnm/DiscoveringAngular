@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Room} from '../../../shared/model/room.model';
 import {Patient} from '../../../shared/model/patient.model';
 import {PatientApiService} from '../../../shared/services/patient-api.service';
+import {SettingService} from '../../../shared/services/setting.service';
 
 @Component({
   selector: 'app-room',
@@ -11,16 +12,25 @@ import {PatientApiService} from '../../../shared/services/patient-api.service';
 export class RoomComponent implements OnInit {
 
   @Input() room: Room;
-  patients: Patient[];
+  patients: Patient[] = [];
   patientActive: Patient;
   roomStatus: string;
 
-  constructor(private patientApi: PatientApiService) { }
+  constructor(private patientApi: PatientApiService, private settingsService: SettingService) { }
 
   ngOnInit() {
-    this.patients = this.room.beds.map(bed => this.patientApi.getPatient(bed.patientId));
-    this.setPatientActive(this.patients[0]);
-    this.checkStatusOfRoom();
+    this.room.beds.filter(bed => bed.patientId !== undefined).forEach(bed => this.getPatient(bed.patientId));
+  }
+
+  getPatient(id: number) {
+    this.patientApi.getPatient(id).subscribe(
+      (patient: Patient) => {
+        this.patients.push(patient);
+        this.setPatientActive(this.patients[0]);
+        this.checkStatusOfRoom();
+      },
+      (error => console.log(error))
+    );
   }
 
   setPatientActive(patient: Patient) {

@@ -1,6 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Department} from '../model/department.model';
 import {Room} from '../model/room.model';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -186,15 +189,17 @@ export class DepartmentApiService {
     },
   ];
 
+  private departmentUrl = 'http://localhost:3000/api/departments';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getDepartments(): Department[] {
-    return this.departments;
+  getDepartments(): Observable<Department[]> {
+    return this.http.get<Department[]>(this.departmentUrl);
   }
 
-  getDepartment(id: number): Department {
-    return this.departments.find(dep => dep.id === id);
+  getDepartment(id: number): Observable<Department>  {
+    const url = `${this.departmentUrl}/${id}`;
+    return this.http.get<Department>(url);
   }
 
   getRooms(departmentId: number): Room[] {
@@ -205,9 +210,9 @@ export class DepartmentApiService {
     return this.rooms.find(room => room.beds.find(bed => bed.patientId === patientId) !== undefined);
   }
 
-  findDepartmentOfPatient(patientId: number): Department {
-    // tslint:disable-next-line:max-line-length
-    return this.departments.find(dep => dep.rooms.find(room => room.beds.find(bed => bed.patientId === patientId) !== undefined) !== undefined);
+  findDepartmentOfPatient(patientId: number): Observable<Department> {
+    const url = `${this.departmentUrl}/patient/${patientId}`;
+    return this.http.get<Department>(url);
   }
 
 

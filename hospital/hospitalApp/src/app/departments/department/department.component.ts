@@ -11,16 +11,20 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DepartmentComponent implements OnInit {
 
-  rooms: Room[];
-
   department: Department;
 
   constructor(private departmentService: DepartmentApiService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.rooms = this.departmentService.getRooms(+params.get('departmentId'));
-      this.department = this.departmentService.getDepartment(+params.get('departmentId'));
+      this.getDepartment(+params.get('departmentId'));
     });
+  }
+
+  getDepartment(id: number) {
+    this.departmentService.getDepartment(id).subscribe(
+      (department: Department) => this.department = department,
+      error => console.log(error)
+    );
   }
 }

@@ -13,6 +13,9 @@ import { PatientThumbnailComponent } from './patients/patient/patient-thumbnail/
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { TreatmentComponent } from './patients/patient/treatment/treatment.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {DatePipe} from '@angular/common';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +28,16 @@ import {ReactiveFormsModule} from '@angular/forms';
     PatientComponent,
     PatientThumbnailComponent,
     TreatmentComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

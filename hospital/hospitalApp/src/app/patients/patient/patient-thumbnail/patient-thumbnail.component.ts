@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Patient} from '../../../shared/model/patient.model';
+import {SettingService} from '../../../shared/services/setting.service';
 
 @Component({
   selector: 'app-patient-thumbnail',
@@ -12,7 +13,7 @@ export class PatientThumbnailComponent implements OnInit {
   isCollapsedPatient;
   isCollapsedTreatment;
 
-  constructor() { }
+  constructor(private settingsService: SettingService) { }
 
   ngOnInit() {
     this.isCollapsedPatient = false;

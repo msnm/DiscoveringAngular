@@ -16,12 +16,21 @@ export enum TreatmentType {
   MEDICATION = 'medicatie toedienen', FEEDING = 'eten geven', WASHING = 'wassen', THERAPY = 'psychologische therapie', WOUND_CARE = 'wonden verzorgen'
 }
 
+export enum Status {
+  OK, HELP
+}
+
+export enum StatusTreatment {
+  TODO = 'ToDo', DONE = 'Done'
+}
+
 export class Treatment {
   id: number;
   type: TreatmentType;
   dateOfTreatment: Date;
   description: string;
-  nursedBy?: Nurse;
+  status?: string;
+  nursedBy?: StatusTreatment;
 }
 
 export class HospitalizationInfo {
@@ -40,6 +49,7 @@ export class Patient extends Person {
   treatments: Treatment[];
   room?: Room;
   department?: Department;
+  status?: Status;
 }
 
 export class Nurse extends Person {}

@@ -16,10 +16,13 @@ export class RoomComponent implements OnInit {
   patientActive: Patient;
   roomStatus: string;
 
-  constructor(private patientApi: PatientApiService, private settingsService: SettingService) { }
+  constructor(private patientApi: PatientApiService, private settingsService: SettingService) {
+  }
 
   ngOnInit() {
     this.room.beds.filter(bed => bed.patientId !== undefined).forEach(bed => this.getPatient(bed.patientId));
+    this.checkStatusOfRoom();
+
   }
 
   getPatient(id: number) {
@@ -43,6 +46,21 @@ export class RoomComponent implements OnInit {
 
   checkStatusOfRoom() {
     if (this.patients && this.patients.length !== 0) {
+      for (const patient of this.patients) {
+        for (const treatment of patient.treatments) {
+          if (treatment.status !== 'Done') {
+            const now = new Date();
+            const treatmentDate: Date = new Date(treatment.dateOfTreatment);
+            const milliseconds = now.getTime() - treatmentDate.getTime();
+            const hours = milliseconds / 1000 / 60 / 60;
+            if (Math.abs(hours) <= 1) {
+              this.roomStatus = 'treatment';
+              this.patientActive = patient;
+              return;
+            }
+          }
+        }
+      }
       this.roomStatus = 'ok';
     } else {
       this.roomStatus = 'empty';

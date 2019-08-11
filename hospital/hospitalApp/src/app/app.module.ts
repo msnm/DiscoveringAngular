@@ -16,6 +16,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {DatePipe} from '@angular/common';
 import { SettingsComponent } from './settings/settings.component';
+import { SearchModalComponent } from './shared/modal/search-modal/search-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SettingsComponent } from './settings/settings.component';
     PatientThumbnailComponent,
     TreatmentComponent,
     SettingsComponent,
+    SearchModalComponent,
   ],
   imports: [
     BrowserModule,

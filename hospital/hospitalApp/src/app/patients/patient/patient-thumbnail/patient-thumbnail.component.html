@@ -43,15 +43,15 @@
         </div>
         <div id="collapseTreatmentInfo" class="row justify-content-end" [ngbCollapse]="!isCollapsedTreatment">
           <div class="col-md-5">
-            wassen
+            {{nextTreatment.type}}
           </div>
           <div class="col-md-5">
-            2uur
+            {{nextTreatment.dateOfTreatment | date: 'hh'}}
           </div>
         </div>
       </div>
     </li>
   </ul>
-  <button class="btn btn-info" [routerLink]="['/patients', patient.id]">Raadpleeg <i class="fa fa-table"></i>
+  <button class="btn btn-primary mt-2" [routerLink]="['/patients', patient.id]">Open <i class="fa fa-table"></i>
   </button>
 </div>

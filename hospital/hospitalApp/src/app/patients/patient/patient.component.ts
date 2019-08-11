@@ -19,6 +19,8 @@ export class PatientComponent implements OnInit {
   departments: Department[];
   addPatient = false;
 
+  treatmentsSorted: Treatment[];
+
   constructor(private patientApi: PatientApiService, private departmentApi: DepartmentApiService, private route: ActivatedRoute) {
   }
 
@@ -30,12 +32,12 @@ export class PatientComponent implements OnInit {
   getDepartments() {
     this.departmentApi.getDepartments().subscribe(
       (deps: Department[]) => this.departments = deps,
-      error => console.log(error)
+      err => console.log(err)
     );
   }
 
   treatmentChanged(treatment: Treatment) {
-    if(!treatment) {
+    if (!treatment) {
       this.toggleAddPatient();
     }
     if (!treatment.id) {
@@ -68,17 +70,34 @@ export class PatientComponent implements OnInit {
        this.patientApi.getPatient(+params.get('patientId')).subscribe(
          (patient: Patient) => {
            this.patient = patient;
+           this.sortStatus();
            this.departmentApi.findDepartmentOfPatient(this.patient.id).subscribe(
              (dep: Department) => {
               this.patient.department = dep;
               this.patient.room = this.patient.department.rooms.find(
                 room => room.beds.find(bed => bed.patientId === this.patient.id) !== undefined);
             },
-            error => console.log(error)
+            err => console.log(err)
           );
         },
-        error => console.log(error)
+        err => console.log(err)
       );
     });
+  }
+
+
+  sortStatus() {
+    this.patient.treatments.sort((a, b) => a.status > b.status ? -1 : 1);
+
+  }
+  sortDescription() {
+    this.patient.treatments.sort((a, b) => a.description > b.description ? 1 : -1);
+  }
+
+  sortDate() {
+    this.patient.treatments.sort((a, b) => new Date(a.dateOfTreatment).getTime() > new Date(b.dateOfTreatment).getTime() ? 1 : -1);
+  }
+  sortType() {
+    this.patient.treatments.sort((a, b) => a.type > b.type ? 1 : -1);
   }
 }

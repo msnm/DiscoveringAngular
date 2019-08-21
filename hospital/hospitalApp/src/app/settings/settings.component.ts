@@ -29,7 +29,7 @@ export class SettingsComponent implements OnInit {
       interval: [this.settings.interval, Validators.required],
       icons: [this.settings.roomNumber, Validators.required],
       colorOK: [this.settings.roomNumber, Validators.required],
-      colorERROR: [this.settings.roomNumber, Validators.required],
+      colorERROR: [this.settings.roomNumber, Validators.required]
     });
   }
 

@@ -18,7 +18,10 @@ export class PatientComponent implements OnInit {
   patient: Patient;
   departments: Department[];
   addPatient = false;
-
+  isSortStatus = false;
+  isSortType = false;
+  isSortTreatmentDate = false;
+  isSortDescription = false;
   treatmentsSorted: Treatment[];
 
   constructor(private patientApi: PatientApiService, private departmentApi: DepartmentApiService, private route: ActivatedRoute) {
@@ -91,17 +94,38 @@ export class PatientComponent implements OnInit {
 
 
   sortStatus() {
-    this.patient.treatments.sort((a, b) => a.status > b.status ? -1 : 1);
+    if (this.isSortStatus) {
+      this.patient.treatments.sort((a, b) => a.status <= b.status ? -1 : 1);
+    } else {
+      this.patient.treatments.sort((a, b) => a.status >= b.status ? -1 : 1);
+    }
+    this.isSortStatus = !this.isSortStatus;
 
   }
   sortDescription() {
-    this.patient.treatments.sort((a, b) => a.description > b.description ? 1 : -1);
+    if (this.isSortDescription) {
+      this.patient.treatments.sort((a, b) => a.description <= b.description ? 1 : -1);
+
+    } else {
+      this.patient.treatments.sort((a, b) => a.description >= b.description ? 1 : -1);
+    }
+    this.isSortDescription = !this.isSortDescription;
   }
 
   sortDate() {
-    this.patient.treatments.sort((a, b) => new Date(a.dateOfTreatment).getTime() > new Date(b.dateOfTreatment).getTime() ? 1 : -1);
+    if (this.isSortTreatmentDate) {
+      this.patient.treatments.sort((a, b) => new Date(a.dateOfTreatment).getTime() <= new Date(b.dateOfTreatment).getTime() ? 1 : -1);
+    } else {
+      this.patient.treatments.sort((a, b) => new Date(a.dateOfTreatment).getTime() >= new Date(b.dateOfTreatment).getTime() ? 1 : -1);
+    }
+    this.isSortTreatmentDate = !this.isSortTreatmentDate;
   }
   sortType() {
-    this.patient.treatments.sort((a, b) => a.type > b.type ? 1 : -1);
+    if (this.isSortType) {
+      this.patient.treatments.sort((a, b) => a.type <= b.type ? 1 : -1);
+    } else {
+      this.patient.treatments.sort((a, b) => a.type >= b.type ? 1 : -1);
+    }
+    this.isSortType = !this.isSortType;
   }
 }

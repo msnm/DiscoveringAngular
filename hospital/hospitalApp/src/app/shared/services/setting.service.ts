@@ -13,7 +13,7 @@ export class SettingService {
       roomNumber: true,
       namePatient: true,
       treatmentType: true,
-      interval: 30,
+      interval: 1,
       icons: true,
       colorOK: 'GREEN',
       colorERROR: 'RED'

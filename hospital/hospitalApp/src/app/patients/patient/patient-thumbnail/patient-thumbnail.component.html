@@ -15,13 +15,20 @@
             </div>
           </button>
         </div>
-        <div id="collapsePatientInfo" class="row justify-content-end" [ngbCollapse]="!isCollapsedPatient">
-          <div class="col-md-5">
-            <i *ngIf="patient.sex==='M'" class="fa fa-mars"></i>
-            <i *ngIf="patient.sex==='F'" class="fa fa-venus"></i>
+        <div id="collapsePatientInfo" class=" justify-content-end" [ngbCollapse]="!isCollapsedPatient">
+          <div class="row">
+            <div class="col-md-5">
+              <i *ngIf="patient.sex==='M'" class="fa fa-mars"></i>
+              <i *ngIf="patient.sex==='F'" class="fa fa-venus"></i>
+            </div>
+            <div class="col-md-5">
+              {{patient.birthDate | date : 'LL-MM-yyyy'}}
+            </div>
           </div>
-          <div class="col-md-5">
-            {{patient.birthDate | date : 'LL-MM-yyyy'}}
+          <div class="row">
+            <div class="col">
+             {{patient.hospitalizationInfo.reason}}
+            </div>
           </div>
         </div>
       </div>

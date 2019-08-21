@@ -61,7 +61,7 @@ export class RoomComponent implements OnInit {
             const milliseconds = now.getTime() - treatmentDate.getTime();
             const hour = 1000 * 60 * 60;
             const hours = milliseconds / hour;
-            if (Math.abs(hours) <= 1) {
+            if (Math.abs(hours) <= this.settingsService.getSetting().interval) {
               this.roomStatus = 'treatment';
               this.patientActive = patient;
               this.emitRoomStatus();

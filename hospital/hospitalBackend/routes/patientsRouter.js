@@ -9,10 +9,12 @@ const path = require('path');
 const patientsPath = "../data/patients.json";
 
 router.use(bodyParser.json());
+router.delete("/:patientId/treatments/:treatmentId", deleteTreatment);
 router.get("/", getPatients);
 router.get("/:patientId", getPatient);
 router.patch("/:patientId", updatePatient);
 router.post("/:patientId", addTreatment);
+
 
 
 
@@ -32,12 +34,33 @@ function getPatient(req, resp) {
     }
 }
 
+function deleteTreatment(req, resp) {
+    let patients = readPatientsFromDB();
+    let patient = patients.find(patient => patient.id === +req.params.patientId);
+    const index = patients.indexOf(patient);
+
+    const treatment = patient.treatments.find(t => t.id === +req.params.treatmentId);
+    const indexTreatment = patient.treatments.indexOf(treatment);
+    if(indexTreatment) {
+        patient.treatments.splice(indexTreatment, 1);
+        patients[index] = patient;
+        writePatientTODB(patients);
+        resp.status(200).send();
+    }
+    else {
+        resp.status(404);
+    }
+}
+
 function updatePatient(req, resp) {
     let patients = readPatientsFromDB();
     let patient = patients.find(patient => patient.id === +req.params.patientId);
     const index = patients.indexOf(patient);
     console.log(patient.treatments);
     patient = req.body;
+    patient.department = undefined;
+    patient.room = undefined;
+    console.log(patient);
     patients[index] = patient;
     writePatientTODB(patients);
     if(patient) {

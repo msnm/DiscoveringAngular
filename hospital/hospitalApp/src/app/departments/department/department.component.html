@@ -1,14 +1,25 @@
 <div class="container-fluid mg-5">
-  <div class="row">
-    <div class="col">
+  <div class="row justify-content-between">
+    <div class="col-md-4 offset-4">
       <h3 class="text-center"> Dashboard {{department.name}}</h3>
     </div>
+    <div class="col-md-4 mt-2">
+      <button (click)="orderByRoomNumber()" class="btn-primary small mr-1 tex">roomnumber <i class="fa fa-sort"></i></button>
+      <button (click)="orderByStatus('ok')" class="btn-success small  mr-1">ok <i class="fa fa-sort"></i>
+      </button>
+      <button (click)="orderByStatus('treatment')"  class="btn-warning small mr-1">treatment <i class="fa fa-sort"></i>
+      </button>
+      <button (click)="orderByStatus('help')"  class="btn-danger small  mr-1">help <i class="fa fa-sort"></i>
+      </button>
+      <button (click)="orderByStatus('empty')"  class="btn-info small mr-1">empty <i class="fa fa-sort"></i>
+      </button>
+    </div>
   </div>
-<div class="row">
-  <div class="card-deck">
+  <div class="row">
+    <div class="card-deck">
       <div *ngFor="let room of department.rooms" class="col-md-4">
-        <app-room [room]="room"></app-room>
+        <app-room [room]="room" (roomStatusEvent)="setStatusOfRoom($event)"></app-room>
       </div>
     </div>
-</div>
+  </div>
 </div>

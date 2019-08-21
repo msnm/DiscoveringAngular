@@ -17,7 +17,7 @@ export enum TreatmentType {
 }
 
 export enum Status {
-  OK, HELP
+  OK = 'ok', HELP = 'help'
 }
 
 export enum StatusTreatment {

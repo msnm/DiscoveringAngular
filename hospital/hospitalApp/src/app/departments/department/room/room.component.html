@@ -2,7 +2,7 @@
   <div class="card-header">
     <div class="container align-items-center">
       <div class="row ">
-        <div class="col-md-3"><span class="badge text-right" [ngClass]="{'badge-success' : this.roomStatus === 'ok', 'badge-info': this.roomStatus ==='empty', 'badge-warning': this.roomStatus ==='treatment'}" >{{this.roomStatus}}</span></div>
+        <div class="col-md-3"><span class="badge text-right" [ngClass]="{'badge-danger' : this.roomStatus === 'help','badge-success' : this.roomStatus === 'ok', 'badge-info': this.roomStatus ==='empty', 'badge-warning': this.roomStatus ==='treatment'}" >{{this.roomStatus}}</span></div>
         <div class="col-md-9">
           <ul class="nav nav-tabs card-header-tabs">
             <div  *ngFor="let patient of patients">

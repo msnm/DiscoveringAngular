@@ -51,6 +51,10 @@ export class PatientComponent implements OnInit {
       () => this.getPatient());
   }
 
+  deleteTreatment(treatment: Treatment) {
+    this.patientApi.deleteTreatment(this.patient.id, treatment.id).subscribe(result => this.getPatient());
+  }
+
   addTreatment(treatment: Treatment) {
     console.log('Adding treatment', treatment);
     const id = this.patient.treatments[this.patient.treatments.length - 1].id + 1;

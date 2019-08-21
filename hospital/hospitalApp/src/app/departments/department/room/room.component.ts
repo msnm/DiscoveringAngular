@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Room} from '../../../shared/model/room.model';
-import {Patient} from '../../../shared/model/patient.model';
+import {Patient, Status} from '../../../shared/model/patient.model';
 import {PatientApiService} from '../../../shared/services/patient-api.service';
 import {SettingService} from '../../../shared/services/setting.service';
 
@@ -14,6 +14,7 @@ export class RoomComponent implements OnInit {
   @Input() room: Room;
   patients: Patient[] = [];
   patientActive: Patient;
+  @Output() roomStatusEvent = new EventEmitter<any>();
   roomStatus: string;
 
   constructor(private patientApi: PatientApiService, private settingsService: SettingService) {
@@ -47,24 +48,44 @@ export class RoomComponent implements OnInit {
   checkStatusOfRoom() {
     if (this.patients && this.patients.length !== 0) {
       for (const patient of this.patients) {
+        if (patient.status && patient.status === Status.HELP) {
+          this.roomStatus = 'help';
+          this.patientActive = patient;
+          this.emitRoomStatus();
+          return;
+        }
         for (const treatment of patient.treatments) {
           if (treatment.status !== 'Done') {
             const now = new Date();
             const treatmentDate: Date = new Date(treatment.dateOfTreatment);
             const milliseconds = now.getTime() - treatmentDate.getTime();
-            const hours = milliseconds / 1000 / 60 / 60;
+            const hour = 1000 * 60 * 60;
+            const hours = milliseconds / hour;
             if (Math.abs(hours) <= 1) {
               this.roomStatus = 'treatment';
               this.patientActive = patient;
+              this.emitRoomStatus();
               return;
             }
           }
         }
       }
       this.roomStatus = 'ok';
+      this.emitRoomStatus();
+      return;
     } else {
       this.roomStatus = 'empty';
+      this.emitRoomStatus();
+      return;
     }
+  }
+
+  emitRoomStatus() {
+    const status = {
+      roomNumber:  this.room.roomNumber,
+      status: this.roomStatus
+    };
+    this.roomStatusEvent.emit(status);
   }
 
 }

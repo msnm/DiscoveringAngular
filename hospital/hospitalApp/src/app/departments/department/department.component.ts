@@ -12,6 +12,8 @@ import {ActivatedRoute} from '@angular/router';
 export class DepartmentComponent implements OnInit {
 
   department: Department;
+  isOrderByRoomNumber = true;
+  statusOfRooms: any[] = [];
 
   constructor(private departmentService: DepartmentApiService, private route: ActivatedRoute) { }
 
@@ -21,10 +23,33 @@ export class DepartmentComponent implements OnInit {
     });
   }
 
+  orderByStatus(status: string) {
+    const roomsFiltered: number[] = this.statusOfRooms.filter(room => room.status === status).map( room => +room.roomNumber);
+    if (roomsFiltered && roomsFiltered.length > 0) {
+      this.department.rooms.sort((r1, r2) => roomsFiltered.includes(r1.roomNumber) >= roomsFiltered.includes(r2.roomNumber) ? -1 : 1);
+    }
+  }
+
+  orderByRoomNumber(): void {
+    !this.isOrderByRoomNumber ? this.department.rooms.sort((room1, room2) => room1.roomNumber <= room2.roomNumber ? -1 : 1) :
+      this.department.rooms.sort((room1, room2) => room1.roomNumber >= room2.roomNumber ? -1 : 1) ;
+    this.isOrderByRoomNumber = !this.isOrderByRoomNumber;
+  }
+
   getDepartment(id: number) {
     this.departmentService.getDepartment(id).subscribe(
       (department: Department) => this.department = department,
       error => console.log(error)
     );
+  }
+
+  setStatusOfRoom(event: any) {
+    const room = this.statusOfRooms.find(r => r.roomNumber === event.roomNumber);
+    if (room) {
+      const index = this.statusOfRooms.indexOf(room);
+      this.statusOfRooms[index] = event;
+    } else {
+      this.statusOfRooms.push(event);
+    }
   }
 }

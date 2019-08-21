@@ -13,6 +13,7 @@ export class TreatmentComponent implements OnInit {
   @Input() treatment: Treatment;
   @Input() newTreatment = false;
   @Output() treatmentChanged = new EventEmitter<Treatment>();
+  @Output() deleteTreatmentEvent = new EventEmitter<Treatment>();
 
   treatmentForm: FormGroup;
   treatmentTypes: string[] = [];
@@ -70,7 +71,8 @@ export class TreatmentComponent implements OnInit {
   }
 
   deleteTreatment() {
-    console.log('Deleted');
+    console.log('delete');
+    this.deleteTreatmentEvent.emit(this.treatment);
     this.toggleForm();
   }
 

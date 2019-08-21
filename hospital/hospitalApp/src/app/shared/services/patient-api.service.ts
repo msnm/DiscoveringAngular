@@ -296,8 +296,8 @@ export class PatientApiService {
     return this.http.post<Patient>(url, patient, { headers });
   }
 
-  deleteTreatment(patient: Patient): Observable<Patient> {
-    const url = `${this.patientUrl}/${patient.id}`;
-    return this.http.delete<Patient>(url);
+  deleteTreatment(patientId: number, treatmentId: number): Observable<Patient> {
+    const url = `${this.patientUrl}/${patientId}/treatments/${treatmentId}`;
+    return this.http.delete<any>(url);
   }
 }

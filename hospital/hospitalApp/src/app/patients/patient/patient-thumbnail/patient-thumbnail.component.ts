@@ -15,6 +15,7 @@ export class PatientThumbnailComponent implements OnChanges, OnInit {
   isCollapsedTreatment;
 
   nextTreatment: Treatment;
+  interval: number;
 
   constructor(private settingsService: SettingService) {
   }
@@ -24,14 +25,18 @@ export class PatientThumbnailComponent implements OnChanges, OnInit {
     this.isCollapsedTreatment = false;
   }
 
-  onClick() {
-    const todos = this.patient.treatments.filter(t => t.status === 'ToDo').sort((a, b) => new Date(a.dateOfTreatment).getTime() >= new Date(b.dateOfTreatment).getTime() ? -1 : 1);
-    if (todos && todos.length > 0) {
-      this.nextTreatment = todos[0];
-    }
+  getNextTreatmentInHours(): number {
+    return Math.round(Math.abs(new Date().getTime() - new Date(this.nextTreatment.dateOfTreatment).getTime()) / 1000 / 60 / 60);
   }
 
-
+  onClick() {
+    const todos = this.patient.treatments.filter(t => t.status === 'ToDo').sort((a, b) => new Date(a.dateOfTreatment).getTime()
+    >= new Date(b.dateOfTreatment).getTime() ? -1 : 1);
+    if (todos && todos.length > 0) {
+      this.nextTreatment = todos[0];
+      this.interval = this.getNextTreatmentInHours();
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
       this.onClick();
